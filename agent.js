@@ -56,7 +56,7 @@ After collecting all details say:
 - If customer is angry or frustrated, stay calm and empathetic
 `;
 
-async function callGroq(messages) {
+export async function callGroq(messages) {
   const response = await axios.post(
     "https://api.groq.com/openai/v1/chat/completions",
     {
@@ -75,7 +75,7 @@ async function callGroq(messages) {
   return response.data.choices[0].message.content;
 }
 
-async function sendWhatsAppMessage(to, text) {
+export async function sendWhatsAppMessage(to, text) {
   await axios.post(
     `https://graph.facebook.com/v19.0/${process.env.PHONE_NUMBER_ID}/messages`,
     {
@@ -95,7 +95,7 @@ async function sendWhatsAppMessage(to, text) {
   console.log(`Reply sent to ${to}`);
 }
 
-async function handleIncomingMessage(from, userText) {
+export async function handleIncomingMessage(from, userText) {
   if (!conversationHistory[from]) {
     conversationHistory[from] = [];
   }
@@ -118,5 +118,3 @@ async function handleIncomingMessage(from, userText) {
 
   await sendWhatsAppMessage(from, aiReply);
 }
-
-module.exports = { handleIncomingMessage };

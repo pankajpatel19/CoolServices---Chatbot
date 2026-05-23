@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
-const VERIFY_TOKEN = process.env.WEBHOOK_VERIFY_TOKEN || "my_secret_token";
+const VERIFY_TOKEN = process.env.WEBHOOK_VERIFY_TOKEN;
 
 app.get("/", (req, res) => {
   res.send("Cool Service WhatsApp Agent is running!");
